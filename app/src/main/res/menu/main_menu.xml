@@ -1,0 +1,37 @@
+package com.paranoid.browser
+
+object TrackerBlocker {
+    private val blocked = setOf(
+        "google-analytics.com", "googletagmanager.com", "googletagservices.com",
+        "googleadservices.com", "doubleclick.net", "adservice.google.com",
+        "pagead2.googlesyndication.com", "ads.google.com", "admob.com",
+        "app-measurement.com", "firebase.google.com", "firebaseio.com",
+        "crashlytics.com", "firebaseinstallations.googleapis.com",
+        "facebook.com", "facebook.net", "fbcdn.net", "fb.com",
+        "connect.facebook.com", "pixel.facebook.com",
+        "hotjar.com", "static.hotjar.com", "script.hotjar.com",
+        "mixpanel.com", "api.mixpanel.com",
+        "segment.com", "cdn.segment.com",
+        "amplitude.com", "api.amplitude.com",
+        "newrelic.com", "bam.nr-data.net",
+        "bugsnag.com", "notify.bugsnag.com",
+        "sentry.io", "browser.sentry-cdn.com",
+        "quantserve.com", "quantcount.com",
+        "scorecardresearch.com", "sb.scorecardresearch.com",
+        "outbrain.com", "widgets.outbrain.com",
+        "taboola.com", "cdn.taboola.com",
+        "criteo.com", "criteo.net",
+        "perimeterx.net",
+        "bat.bing.com", "clarity.ms",
+        "analytics.twitter.com", "ads-twitter.com",
+        "analytics.tiktok.com",
+        "pixel.wp.com", "stats.wp.com"
+    )
+    fun isBlocked(host: String): Boolean {
+        val h = host.lowercase()
+        for (b in blocked) {
+            if (h == b || h.endsWith(".$b")) return true
+        }
+        return false
+    }
+}
